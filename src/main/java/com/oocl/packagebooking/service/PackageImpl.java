@@ -32,11 +32,15 @@ public class PackageImpl {
 //        return list1;
 //    }
 
-    public Package updatePackageByStatus(Package package1) {
+    public Package updatePackage(Package package1) {
         Package package2 = packageRepository.findById(package1.getId()).orElse(null);
-        package2.setStatus(package1.getStatus());
-        packageRepository.save(package2);
+        if (package1.getPhone()==null){
+            package2.setTime(package1.getTime());
 
+        }else{
+            package2.setStatus(package1.getStatus());
+        }
+        packageRepository.save(package2);
         return packageRepository.findById(package1.getId()).orElse(null);
     }
 

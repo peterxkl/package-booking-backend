@@ -26,7 +26,7 @@ public class PackageController {
 
     @PutMapping("/packages")
     public Package updatePackageByStatus(@RequestBody Package package1){
-        return aPackage.updatePackageByStatus(package1);
+        return aPackage.updatePackage(package1);
     }
 
     @PostMapping("/packages")
