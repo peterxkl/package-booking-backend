@@ -6,7 +6,7 @@ logging:
       hibernate: DEBUG
 spring:
   datasource:
-    url:  jdbc:h2:file:./h2/org3
+    url:  jdbc:h2:file:./h2/org4
     username: root
     password: 123456
   jpa:

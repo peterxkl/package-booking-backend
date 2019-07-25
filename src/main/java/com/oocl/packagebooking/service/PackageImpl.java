@@ -5,6 +5,7 @@ import com.oocl.packagebooking.repository.PackageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -13,16 +14,21 @@ public class PackageImpl {
     @Autowired
     private PackageRepository packageRepository;
 
-    public List<Package> getAllPackage(){
-        List<Package> list = packageRepository.findAll();
+    public List<Package> getAllPackage(int status){
+        List<Package> list = new ArrayList<>();
+        if(status==-1){
+             list = packageRepository.findAll();
+        }else{
+             list = packageRepository.findAllByStatus(status);
+        }
         return list;
     }
 
-    public List<Package> getSomePackageByStatus(int status) {
-        List<Package> list1 = packageRepository.findAllByStatus(status);
-
-        return list1;
-    }
+//    public List<Package> getSomePackageByStatus(int status) {
+//        List<Package> list1 = packageRepository.findAllByStatus(status);
+//
+//        return list1;
+//    }
 
     public Package updatePackageByStatus(Package package1) {
         Package package2 = packageRepository.findById(package1.getId()).orElse(null);

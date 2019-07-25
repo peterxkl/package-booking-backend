@@ -8,7 +8,6 @@ import javax.persistence.Id;
 @Entity
 public class Package {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
     private String name;

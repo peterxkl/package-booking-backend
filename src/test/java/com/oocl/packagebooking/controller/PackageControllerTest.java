@@ -48,16 +48,20 @@ public class PackageControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(2));
 
-    }
-
-    @Test
-    public void should_return_SomePackageByStatus() throws Exception {
         mockMvc.perform(get("/packages?status={status}",1))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(1));
-
     }
+
+//    @Test
+//    public void should_return_SomePackageByStatus() throws Exception {
+//        mockMvc.perform(get("/packages?status={status}",1))
+//                .andDo(print())
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath("$.length()").value(1));
+//
+//    }
 
     @Test
     public void should_return_Package_update_Status() throws Exception {
