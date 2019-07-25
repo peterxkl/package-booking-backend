@@ -28,4 +28,11 @@ public class PackageController {
     public Package updatePackageByStatus(@RequestBody Package package1){
         return aPackage.updatePackageByStatus(package1);
     }
+
+    @PostMapping("/packages")
+    public Package addPackage(@RequestBody Package package1){
+        return aPackage.addPackage(package1);
+    }
+
+
 }

@@ -80,6 +80,18 @@ public class PackageControllerTest {
 
     }
 
+    @Test
+    public void should_return_Package_when_save_Package() throws Exception {
+        mockMvc.perform(post("/packages").contentType(MediaType.APPLICATION_JSON).content("{\n" +
+                "        \"id\": \"0000000004\",\n" +
+                "        \"name\": \"Dillon4\",\n" +
+                "        \"phone\": \"18711345569\"\n" +
+                "}"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("Dillon4"));
+
+    }
 
 
 }

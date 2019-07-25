@@ -5,7 +5,9 @@ import com.oocl.packagebooking.repository.PackageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -36,5 +38,17 @@ public class PackageImpl {
         packageRepository.save(package2);
 
         return packageRepository.findById(package1.getId()).orElse(null);
+    }
+
+    public Package addPackage(Package package1) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = new Date();
+        String time = sdf.format(date);
+        package1.setStatus(1);
+        package1.setTime(time);
+        packageRepository.save(package1);
+
+        return packageRepository.findById(package1.getId()).orElse(null);
+
     }
 }
