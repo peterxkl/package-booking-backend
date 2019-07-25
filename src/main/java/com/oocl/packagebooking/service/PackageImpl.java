@@ -26,19 +26,14 @@ public class PackageImpl {
         return list;
     }
 
-//    public List<Package> getSomePackageByStatus(int status) {
-//        List<Package> list1 = packageRepository.findAllByStatus(status);
-//
-//        return list1;
-//    }
-
     public Package updatePackage(Package package1) {
         Package package2 = packageRepository.findById(package1.getId()).orElse(null);
-        if (package1.getPhone()==null){
+        if (package1.getPhone()==null){//预约取件，添加时间，修改状态
             package2.setTime(package1.getTime());
-
-        }else{
-            package2.setStatus(package1.getStatus());
+            package2.setStatus(0);
+        }else{//取件，修改状态，删除时间
+            package2.setStatus(2);
+            package2.setTime(null);
         }
         packageRepository.save(package2);
         return packageRepository.findById(package1.getId()).orElse(null);

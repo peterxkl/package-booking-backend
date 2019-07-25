@@ -21,6 +21,17 @@ public class Package {
     public Package() {
     }
 
+    public Package(String id) {
+        this.id = id;
+    }
+
+    public Package(String id, String name, String phone, int status) {
+        this.id = id;
+        this.name = name;
+        this.phone = phone;
+        this.status = status;
+    }
+
     public Package(String id, String name, String phone, int status, String time) {
         this.id = id;
         this.name = name;
@@ -33,6 +44,11 @@ public class Package {
         this.id = id;
         this.name = name;
         this.phone = phone;
+    }
+
+    public Package(String id, String time) {
+        this.id = id;
+        this.time = time;
     }
 
     public String getId() {

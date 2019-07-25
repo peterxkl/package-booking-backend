@@ -20,12 +20,7 @@ public class PackageController {
         return aPackage.getAllPackage(status);
     }
 
-//    @GetMapping("/packages")
-//    public List<Package> getSomePackageByStatus(@RequestParam(value = "status")int status){
-//        return aPackage.getSomePackageByStatus(status);
-//    }
-
-    @PutMapping("/packages")
+    @PatchMapping("/packages")
     public Package updatePackageByStatus(@RequestBody Package package1){
         return aPackage.updatePackage(package1);
     }

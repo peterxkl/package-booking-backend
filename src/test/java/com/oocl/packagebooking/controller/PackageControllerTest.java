@@ -20,8 +20,7 @@ import java.util.List;
 
 import static org.mockito.BDDMockito.given;
 import static org.springframework.mock.http.server.reactive.MockServerHttpRequest.put;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -69,9 +68,23 @@ public class PackageControllerTest {
 
 
     @Test
-    public void should_return_Package_update_Status() throws Exception {
-        Package p = new Package("0000000000","Dillon1","18711345569",2,"2019-07-15 18:20:00");
-        mockMvc.perform(post("/packages").contentType(MediaType.APPLICATION_JSON).content(mapper.writeValueAsString(p)))
+    public void should_return_Package_update_Status()  throws Exception{
+        Package p1 = new Package("0000000000","2019-07-15 18:20:00");
+        Package p2 = new Package("0000000000","Dillon1","18711345569",0,"2019-07-15 18:20:00");
+
+       Package p3 = new Package("0000000000");
+       Package p4 = new Package("0000000000","Dillon1","18711345569",2,"");
+
+        given(aPackage.updatePackage(p2)).willReturn(p1);
+
+        given(aPackage.updatePackage(p3)).willReturn(p4);
+
+        mockMvc.perform(patch("/packages").contentType(MediaType.APPLICATION_JSON).content(mapper.writeValueAsString(p1)))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.time").value("2019-07-15 18:20:00"));
+
+        mockMvc.perform(patch("/packages").contentType(MediaType.APPLICATION_JSON).content(mapper.writeValueAsString(p3)))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.status").value(2));
@@ -80,14 +93,15 @@ public class PackageControllerTest {
 
     @Test
     public void should_return_Package_when_save_Package() throws Exception {
-        mockMvc.perform(post("/packages").contentType(MediaType.APPLICATION_JSON).content("{\n" +
-                "        \"id\": \"0000000004\",\n" +
-                "        \"name\": \"Dillon4\",\n" +
-                "        \"phone\": \"18711345569\"\n" +
-                "}"))
+        Package p1 = new Package("0000000000","Dillon1","18711345569");
+        Package p2 = new Package("0000000000","Dillon1","18711345569",1);
+
+        given(aPackage.addPackage(p1)).willReturn(p2);
+
+        mockMvc.perform(post("/packages").contentType(MediaType.APPLICATION_JSON).content(mapper.writeValueAsString(p1)))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("Dillon4"));
+                .andExpect(jsonPath("$.status").value(1));
 
     }
 
