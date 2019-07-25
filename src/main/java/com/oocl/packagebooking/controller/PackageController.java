@@ -3,9 +3,7 @@ package com.oocl.packagebooking.controller;
 import com.oocl.packagebooking.model.Package;
 import com.oocl.packagebooking.service.PackageImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +22,10 @@ public class PackageController {
     @GetMapping("/packages")
     public List<Package> getSomePackageByStatus(@RequestParam(value = "status")int status){
         return aPackage.getSomePackageByStatus(status);
+    }
+
+    @PutMapping("/packages")
+    public Package updatePackageByStatus(@RequestBody Package package1){
+        return aPackage.updatePackageByStatus(package1);
     }
 }
