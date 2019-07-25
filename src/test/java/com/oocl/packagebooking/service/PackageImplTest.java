@@ -25,7 +25,7 @@ public class PackageImplTest {
     @MockBean
     private PackageRepository packageRepository;
 
-    @Autowired
+    @MockBean
     private PackageImpl aPackage;
 
     @Test
@@ -47,7 +47,7 @@ public class PackageImplTest {
     }
 
     @Test
-    public void should_return_new_package(){
+    public void should_return_new_package() throws  Exception{
         Package p1 = new Package("0000000000","2019-07-15 18:20:00");
         Package p2 = aPackage.updatePackage(p1);
         Package p = new Package("0000000000","Dillon1","18711345569",1);

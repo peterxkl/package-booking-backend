@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oocl.packagebooking.model.Package;
 import com.oocl.packagebooking.repository.PackageRepository;
 import com.oocl.packagebooking.service.PackageImpl;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
