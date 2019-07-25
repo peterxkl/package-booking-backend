@@ -17,4 +17,10 @@ public class PackageImpl {
         List<Package> list = packageRepository.findAll();
         return list;
     }
+
+    public List<Package> getSomePackageByStatus(int status) {
+        List<Package> list1 = packageRepository.findAllByStatus(status);
+
+        return list1;
+    }
 }

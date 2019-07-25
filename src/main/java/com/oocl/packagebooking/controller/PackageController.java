@@ -16,8 +16,13 @@ public class PackageController {
     private PackageImpl aPackage;
 
 
+//    @GetMapping("/packages")
+//    public List<Package> getAllPackage(){
+//        return aPackage.getAllPackage();
+//    }
+
     @GetMapping("/packages")
-    public List<Package> getAllPackage(){
-        return aPackage.getAllPackage();
+    public List<Package> getSomePackageByStatus(@RequestParam(value = "status")int status){
+        return aPackage.getSomePackageByStatus(status);
     }
 }

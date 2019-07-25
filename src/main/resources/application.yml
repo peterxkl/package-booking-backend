@@ -6,7 +6,9 @@ logging:
       hibernate: DEBUG
 spring:
   datasource:
-    url:  jdbc:h2:file:./h2/org2
+    url:  jdbc:h2:file:./h2/org3
+    username: root
+    password: 123456
   jpa:
     hibernate:
       ddl-auto: update
