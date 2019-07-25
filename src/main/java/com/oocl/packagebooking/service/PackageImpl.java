@@ -28,7 +28,7 @@ public class PackageImpl {
 
     public Package updatePackage(Package package1) {
         Package package2 = packageRepository.findById(package1.getId()).orElse(null);
-        if (package1.getPhone()==null){//预约取件，添加时间，修改状态
+        if (package1.getTime()!=null){//预约取件，添加时间，修改状态
             package2.setTime(package1.getTime());
             package2.setStatus(0);
         }else{//取件，修改状态，删除时间

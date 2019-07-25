@@ -15,6 +15,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -42,6 +43,24 @@ public class PackageImplTest {
 
         assertSame(list.size(),aPackage.getAllPackage(-1).size());
         assertSame(list1.size(),aPackage.getAllPackage(1).size());
+
+    }
+
+    @Test
+    public void should_return_new_package(){
+        Package p1 = new Package("0000000000","2019-07-15 18:20:00");
+        Package p2 = aPackage.updatePackage(p1);
+        Package p = new Package("0000000000","Dillon1","18711345569",1);
+
+        given(packageRepository.findById("0000000000")).willReturn(p);
+
+        assertSame(0,p2.getStatus());
+
+        Package p3 = new Package("0000000000");
+
+        Package p4 = aPackage.updatePackage(p3);
+
+        assertSame(2,p4.getStatus());
 
     }
 
